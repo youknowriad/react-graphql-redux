@@ -1,0 +1,56 @@
+{
+  "name": "react-graphql-redux",
+  "version": "0.0.1",
+  "description": "use GraphQL to query your Redux store.",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "eslint src",
+    "compile": "rimraf lib && BABEL_ENV=commonjs babel -d dist/ src/",
+    "prepublish": "npm run test && npm run compile",
+    "unit": "mocha --compilers js:babel-register --recursive test",
+    "test": "npm run lint",
+    "changelog": "conventional-changelog -i CHANGELOG.md -w -r 0 -p angular"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/youknowriad/react-graphql-redux.git"
+  },
+  "author": "Riad Benguella <riad@rizeway.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/youknowriad/react-graphql-redux/issues"
+  },
+  "homepage": "https://github.com/youknowriad/react-r#readme",
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.18.0",
+    "babel-eslint": "^7.1.1",
+    "babel-plugin-transform-class-properties": "^6.19.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
+    "babel-plugin-transform-object-rest-spread": "^6.20.2",
+    "babel-preset-es2017": "^6.16.0",
+    "babel-register": "^6.18.0",
+    "eslint": "^3.12.2",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-react": "^6.8.0",
+    "expect": "^1.20.2",
+    "graphql": "^0.8.2",
+    "graphiql": "^0.8.1",
+    "mocha": "^3.2.0",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "redux": "^3.6.0",
+    "rimraf": "^2.5.4"
+  },
+  "peerDependencies": {
+    "graphql": "^0.8.2",
+    "graphiql": "^0.8.1",
+    "react": "^0.14.0 || ^15.0.0-0",
+    "react-dom": "^15.4.1",
+    "redux": "^2.0.0 || ^3.0.0"
+  },
+  "dependencies": {
+    "babel-preset-react": "^6.16.0",
+    "lodash": "^4.17.4"
+  }
+}
