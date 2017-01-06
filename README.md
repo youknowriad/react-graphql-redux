@@ -1,7 +1,7 @@
 react-graphql-redux
 ===================
 
-This library provides allows you to use GraphQL to query your Redux store.
+This library allows you to use GraphQL to query your Redux store.
 This library is in its early stages, feel free to send any PR.
 
 Usage
@@ -40,7 +40,7 @@ render(
 );
 ```
 
-3- Start using the `query` HigherOrderComponent to provide data to your components
+3- Start using the `query` Higher Order Component to provide data as a prop to your components
 
 ```js
 import { query } from 'react-graphql-redux';
@@ -51,7 +51,7 @@ const MyComponent = ({ data }) => {
 	);
 };
 
-export default query( '{ hello }' )( MyComponent );
+export default query( '{ hello( name: "Riad" ) }' )( MyComponent );
 ```
 
 Notice that now, components just **declares** the data they need without worrying how it's fetched and extracted from the state.
@@ -59,8 +59,10 @@ Notice that now, components just **declares** the data they need without worryin
 Using Redux Selectors in your Resolvers
 ---------------------------------------
 
-In the example above, the function responsive of returning the data : `({ name }) => Hello ${name}!` is called **a resolver**. In this example, it just concats hello with the name provider.
-But the main purpose of these resolvers will be to retrieve data from the state by calling Redux Selectors. Say we have a `getTodos` selector which will retrieve todos from the store. The corresponding resolver couldb:
+In the example above, the function responsible of returning the data : `({ name }) => Hello ${name}!` is called **a resolver**. In this example, it just concats hello with the name arg.
+But the main purpose of these resolvers will be to retrieve data from the state by calling Redux Selectors.
+
+Say we have a `getTodos` selector which will retrieve todos from the store. The corresponding resolver could be:
 
 ```js
 import { getTodos } from './selectors';
@@ -94,7 +96,9 @@ const createGraph = store => {
 Fetch Data From the server
 --------------------------
 
-We can trigger Redux action creators to fetch the desired data. For example, if we want to fetch the todos by calling an action creator called `fetchTodos`, and we want to refresh this data if the todos have not been refreshed on the last 5 minutes, we could write:
+Resolvers are also responsible of triggering Redux action creators to fetch the desired data.
+
+For example, if we have a`fetchTodos` action creator we should call to fetch the todos, and we want to refresh this data if it has not been fetched on the last 5 minutes, we could write:
 
 ```js
 import { refreshWhenExpired } from 'react-graphql-redux';
@@ -119,7 +123,7 @@ const createGraph = store => {
 // ...
 ```
 
-But, to be able to use the refresh helpers provided by the library `refreshWhenExpired`, make sure to include the `graphReducer` to your store.
+But, to be able to use the refresh helpers provided by the library (like `refreshWhenExpired`), make sure to include the `graphReducer` to your store.
 
 ```js
 import { graphReducer } from 'react-graphql-redux';
@@ -128,14 +132,12 @@ const myReduxReducer = combineReducers({
 	graphqlResolvers: graphReducer,
 	// Add your other reducers here
 });
-
 ```
 
 More
 ----
 
- * The resolvers take arguments
- * The query can be computed using the component props (use a funciton instead of string)
- * You can use graphql variables in your queries
+ * The query can be computed using component props (use a funciton instead of string for the first `query` arg)
+ * You can use graphql variables in your queries (the second `arg` of `query`)
  * If you want to refresh the data on each new `query` used, it's possible
  * You can yse `GraphiQL` to test/explore your graph
