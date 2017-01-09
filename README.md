@@ -4,6 +4,8 @@ react-graphql-redux
 This library allows you to use GraphQL to query your Redux store.
 This library is in its early stages, feel free to send any PR.
 
+Details about this library in this [blog post](https://riad.blog/2017/01/07/graphql-is-not-only-for-backend-react-redux/)
+
 Usage
 -----
 
@@ -140,4 +142,4 @@ More
  * The query can be computed using component props (use a funciton instead of string for the first `query` arg)
  * You can use graphql variables in your queries (the second `arg` of `query`)
  * If you want to refresh the data on each new `query` used, it's possible
- * You can yse `GraphiQL` to test/explore your graph
+ * You can use `GraphiQL` to test/explore your graph
